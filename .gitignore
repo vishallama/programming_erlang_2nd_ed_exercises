@@ -8,3 +8,9 @@ ebin
 rel/example_project
 .concrete/DEV_MODE
 .rebar
+
+# Swap files
+*.swp
+
+# idea folder
+.idea/

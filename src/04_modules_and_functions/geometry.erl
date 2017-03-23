@@ -17,4 +17,6 @@ area({rectangle, Width, Height}) ->
 area({square, Side}) ->
   Side * Side;
 area({circle, Radius}) ->
-  math:pi() * Radius * Radius.
+  math:pi() * Radius * Radius;
+area({right_triangle, Base, Height}) ->
+  Base * Height / 2.

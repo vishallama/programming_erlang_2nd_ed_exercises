@@ -31,7 +31,7 @@ split1(L) ->
 
 split1([], Evens, Odds) ->
   {lists:reverse(Evens), lists:reverse(Odds)};
-split1([H | T], Evens, Odds) when is_integer(H) ->
+split1([H | T], Evens, Odds) ->
   case even(H) of
     true -> split1(T, [H | Evens], Odds);
     false -> split1(T, Evens, [H | Odds])

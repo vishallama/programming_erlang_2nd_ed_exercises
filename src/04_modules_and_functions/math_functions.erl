@@ -10,7 +10,7 @@
 -author("vishal").
 
 %% API
--export([even/1, odd/1, filter/2]).
+-export([even/1, odd/1, filter/2, split/1]).
 
 even(X) when is_integer(X) ->
   X rem 2 =:= 0.
@@ -20,3 +20,8 @@ odd(X) when is_integer(X) ->
 
 filter(F, L) ->
   [X || X <- L, F(X)].
+
+split(L) ->
+  Evens = filter(fun(X) -> even(X) end, L),
+  Odds = filter(fun(X) -> odd(X) end, L),
+  {Evens, Odds}.

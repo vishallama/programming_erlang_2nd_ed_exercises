@@ -12,7 +12,7 @@
 %% API
 -export([
   for/3, qsort/1, pythag/1, perms/1, odds_and_evens2/1, my_tuple_to_list/1,
-  my_time_func/1]).
+  my_time_func/1, my_date_string/0]).
 
 for(Max, Max, F) ->
   [F(Max)];
@@ -65,3 +65,13 @@ my_time_func(F) ->
   Value = F(),
   End = erlang:monotonic_time(),
   {Value, erlang:convert_time_unit(End - Start, native, millisecond)}.
+
+my_date_string() ->
+  {Date, Time} = calendar:local_time(),
+  {Year, Month, Day} = Date,
+  {Hour, Minute, Second} = Time,
+  lists:flatten(
+    io_lib:format(
+      "~4..0w-~2..0w-~2..0w ~2..0w:~2..0w:~2..0w",[Year, Month, Day, Hour, Minute, Second]
+    )
+  ).

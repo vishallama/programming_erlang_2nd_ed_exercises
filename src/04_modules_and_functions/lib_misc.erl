@@ -10,7 +10,8 @@
 -author("vishal").
 
 %% API
--export([for/3, qsort/1, pythag/1, perms/1, odds_and_evens2/1]).
+-export([
+  for/3, qsort/1, pythag/1, perms/1, odds_and_evens2/1, my_tuple_to_list/1]).
 
 for(Max, Max, F) ->
   [F(Max)];
@@ -48,3 +49,12 @@ odds_and_evens_acc([H | T], Odds, Evens) ->
   end;
 odds_and_evens_acc([], Odds, Evens) ->
   {lists:reverse(Odds), lists:reverse(Evens)}.
+
+my_tuple_to_list(T) when is_tuple(T) ->
+  Len = tuple_size(T),
+  my_tuple_to_list(T, Len, []).
+
+my_tuple_to_list(_T, 0, Acc) ->
+  Acc;
+my_tuple_to_list(T, N, Acc) ->
+  my_tuple_to_list(T, N - 1, [element(N, T) | Acc]).

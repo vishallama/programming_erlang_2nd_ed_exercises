@@ -11,7 +11,8 @@
 
 %% API
 -export([
-  for/3, qsort/1, pythag/1, perms/1, odds_and_evens2/1, my_tuple_to_list/1]).
+  for/3, qsort/1, pythag/1, perms/1, odds_and_evens2/1, my_tuple_to_list/1,
+  my_time_func/1]).
 
 for(Max, Max, F) ->
   [F(Max)];
@@ -58,3 +59,9 @@ my_tuple_to_list(_T, 0, Acc) ->
   Acc;
 my_tuple_to_list(T, N, Acc) ->
   my_tuple_to_list(T, N - 1, [element(N, T) | Acc]).
+
+my_time_func(F) ->
+  Start = erlang:monotonic_time(),
+  Value = F(),
+  End = erlang:monotonic_time(),
+  {Value, erlang:convert_time_unit(End - Start, native, millisecond)}.

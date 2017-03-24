@@ -12,7 +12,7 @@
 %% API
 -export([
   for/3, qsort/1, pythag/1, perms/1, odds_and_evens2/1, my_tuple_to_list/1,
-  my_time_func/1, my_date_string/0]).
+  my_time_func/1, my_date_string/0, sqrt/1]).
 
 for(Max, Max, F) ->
   [F(Max)];
@@ -75,3 +75,8 @@ my_date_string() ->
       "~4..0w-~2..0w-~2..0w ~2..0w:~2..0w:~2..0w",[Year, Month, Day, Hour, Minute, Second]
     )
   ).
+
+sqrt(X) when X < 0 ->
+  error({squareRootNegativeArgument, X});
+sqrt(X) ->
+  math:sqrt(X).

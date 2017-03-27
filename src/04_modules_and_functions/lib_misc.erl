@@ -12,7 +12,7 @@
 %% API
 -export([
   for/3, qsort/1, pythag/1, perms/1, odds_and_evens2/1, my_tuple_to_list/1,
-  my_time_func/1, my_date_string/0, sqrt/1, sleep/1]).
+  my_time_func/1, my_date_string/0, sqrt/1, sleep/1, flush_buffer/0]).
 
 for(Max, Max, F) ->
   [F(Max)];
@@ -84,6 +84,14 @@ sqrt(X) ->
 sleep(T) ->
   receive
   after T ->
+          true
+  end.
+
+flush_buffer() ->
+  receive
+    _Any ->
+      flush_buffer()
+  after 0 ->
           true
   end.
 

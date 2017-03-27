@@ -12,7 +12,9 @@
 %% API
 -export([
   for/3, qsort/1, pythag/1, perms/1, odds_and_evens2/1, my_tuple_to_list/1,
-  my_time_func/1, my_date_string/0, sqrt/1, sleep/1, flush_buffer/0]).
+  my_time_func/1, my_date_string/0, sqrt/1, sleep/1, flush_buffer/0,
+  priority_receive/0]).
+
 
 for(Max, Max, F) ->
   [F(Max)];
@@ -93,5 +95,16 @@ flush_buffer() ->
       flush_buffer()
   after 0 ->
           true
+  end.
+
+priority_receive() ->
+  receive
+    {alarm, X} ->
+      {alarm, X}
+  after 0 ->
+          receive
+            Any ->
+              Any
+          end
   end.
 
